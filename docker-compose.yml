@@ -1,0 +1,23 @@
+app:
+    container_name: app
+    image: wordpress
+    volumes:
+        - /host/my-theme:/var/www/html/wp-content/themes/my-theme
+    links:
+        - mysql
+    environment:
+        WORDPRESS_DB_HOST: mysql
+        WORDPRESS_DB_USER: yeti
+        WORDPRESS_DB_PASSWORD: yeti
+        WORDPRESS_DB_NAME: yeti
+    ports:
+        - "80:80"
+
+mysql:
+    container_name: mysql
+    image: percona:5.6
+    environment:
+        MYSQL_ROOT_PASSWORD: yeti
+        MYSQL_USER: yeti
+        MYSQL_PASSWORD: yeti
+        MYSQL_DATABASE: yeti
